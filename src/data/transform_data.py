@@ -28,8 +28,6 @@ def get_raw_array(keys, data):
 
 def export_new_csv(filename, keys, data):
     f = open(filename, 'w')
-    for idx, key in enumerate(keys):
-        f.write(key + ('\n' if idx == len(keys) - 1 else ','))
     for idx, value in enumerate(data):
         for idx, key in enumerate(keys):
             f.write(str(value[key]) + ('\n' if idx == len(keys) - 1 else ','))
