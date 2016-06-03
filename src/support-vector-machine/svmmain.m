@@ -30,5 +30,5 @@ Y = not(data(:, end));
 
 %% COMPUTING FMEASURE
 Ypred = zeros(length(Y), 1);
-fmeasure(Y, Ypred);
+[acc, fscore] = fmeasure(Y, Ypred);
 

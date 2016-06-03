@@ -1,4 +1,4 @@
-function fmeasure(Y, Ypred)
+function [acc, fscore] = fmeasure(Y, Ypred)
 % FMEASURE - Computes the f-measure metric.
 % This function calculates the f-measure using a vector with the 
 % actual classes and the predicted classes.
@@ -30,3 +30,5 @@ function fmeasure(Y, Ypred)
 
     fprintf('Accuracy %.2f\n', acc)
     fprintf('F-measure %f\n', fscore)
+    
+    
