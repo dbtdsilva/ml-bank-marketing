@@ -9,6 +9,7 @@ colorstring = 'rbgry';
 %scatter(data(:, 1), data(:, 2), colorClass(data(:,7) + 1))
 
 X = data(:,1:end-1);
+Y = not(data(:, end));
 
 %% TRYING PCA ANALYSIS
 %Xfiltered = X;
@@ -20,9 +21,14 @@ X = data(:,1:end-1);
 %Xcentered = score*coeff';
 
 % 11, 13, 20 são bosta... clean
-Y = data(:, end);
-cmap = [1 0 0; 0 1 0; 0 0 1];
-colormap(cmap);
-scatter(score(:,1), score(:,2), 40, Y);
+%
+%cmap = [1 0 0; 0 1 0; 0 0 1];
+%colormap(cmap);
+%scatter(score(:,1), score(:,2), 40, Y);
 
-%% COMPUTING SV
+%% COMPUTING SVM
+
+%% COMPUTING FMEASURE
+Ypred = zeros(length(Y), 1);
+fmeasure(Y, Ypred);
+
