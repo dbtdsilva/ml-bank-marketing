@@ -1,5 +1,3 @@
-% Author: Diogo Silva
-% Email Address: dbtds@ua.pt
 function [acc, fscore] = fmeasure(Y, Ypred)
 % FMEASURE - Computes the f-measure metric.
 % This function calculates the f-measure using a vector with the 
