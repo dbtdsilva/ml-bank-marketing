@@ -27,8 +27,9 @@ Y = not(data(:, end));
 %scatter(score(:,1), score(:,2), 40, Y);
 
 %% COMPUTING SVM
-
+svmModel = svmtrain(X, Y, 'kernel_function', 'rbf');
+out = svmclassify(svmModel, X);
 %% COMPUTING FMEASURE
-Ypred = zeros(length(Y), 1);
-[acc, fscore] = fmeasure(Y, Ypred);
+%Ypred = zeros(length(Y), 1);
+[acc, fscore] = fmeasure(Y, out);
 
