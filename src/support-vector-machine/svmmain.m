@@ -1,9 +1,8 @@
 % Author: Diogo Silva
 % Email Address: dbtds@ua.pt
 
-data = csvread('data/bank-fixed-full.csv'); 
-% You must compile libsvm modules before with 'make octave'
-%addpath('support-vector-machine/libsvm-3.21/matlab/')
+%data = csvread('data/bank-fixed-full.csv'); 
+data = csvread('data/bank-fixed.csv'); 
 
 colorstring = 'rbgry';
 %scatter(data(:, 1), data(:, 2), colorClass(data(:,7) + 1))
@@ -29,12 +28,13 @@ Xcentered = score*coeff';
 %% APPLYING CROSS VALIDATION
 crossvalid = 7;
 
-X(:, 17:20) = [];
-X(:, 12:15) = [];
-%X(:, 10) = [];
-%X(:, 5:8) = [];
-X(:, 1:10) = []; % 4--,2--
+% duration, pdays, poutcome (12, 14, 16)
+% http://www.ijeat.org/attachments/File/v4i4/D3963044415.pdf
 stats = zeros(crossvalid, 2);
+
+global mkernel
+mkernel = @(U,V) U*V';
+
 for index = 1:crossvalid
     %% COMPUTING SVM
     [ TrainX, TestX ] = splitset(X, index, crossvalid);
@@ -43,12 +43,14 @@ for index = 1:crossvalid
     svmModel = fitcsvm(TrainX, TrainY, ...
         ... %'Alpha', 0.5 * ones(size(X,1),1), ...   % 0.5 is default for one-class
         ... %'Weights', ones(size(TrainX,1),1), ...       % default is ones (default)
-        'CategoricalPredictors', [], ... % 2,3,4,5,6,7,8,9,10,15
+        'CategoricalPredictors', [2,3,4,5,6,7,8,9,10,15], ... % additional set
+        ... %'CategoricalPredictors', [2,3,4,5,7,8,9,11,16], ... % base set
         'Standardize', true, ...
-        'KernelFunction','rbf',...      % rbf, linear, polynomial
+        ... %'KernelFunction','rbf',...      % rbf, linear, polynomial
+        'KernelFunction', 'kernelproxy', ...
         'Cost', [0,2;1,0], ...
         ... %'PolynomialOrder', 3, ...       % default is 3
-        'KernelScale','auto', ...
+        ... %'KernelScale','auto', ...
         ... %'OutlierFraction', 0, ...
         ... %'BoxConstraint', 2, ...         % default is 1
         ... %'ClipAlphas', true, ...         % default is true
@@ -74,3 +76,4 @@ for index = 1:crossvalid
 end
 stats_mean = mean(stats)
 stats_std = std(stats)
+
