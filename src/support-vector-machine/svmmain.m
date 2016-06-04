@@ -27,7 +27,9 @@ Y = not(data(:, end));
 %scatter(score(:,1), score(:,2), 40, Y);
 
 %% APPLYING CROSS VALIDATION
-crossvalid = 20;
+crossvalid = 10;
+
+stats = zeros(crossvalid, 2);
 for index = 1:crossvalid
     %% COMPUTING SVM
     [ TrainX, TestX ] = splitset(X, index, crossvalid);
@@ -44,5 +46,7 @@ for index = 1:crossvalid
     %% COMPUTING FMEASURE
     %Ypred = zeros(length(Y), 1);
     [acc, fscore] = fmeasure(TestY, out);
+    stats(index, :) = [fscore, acc];
     fprintf('F-Measure: %.4f, Accuracy: %.4f\n', fscore, acc)
 end
+mean(stats)
