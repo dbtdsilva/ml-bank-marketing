@@ -27,8 +27,7 @@ function [acc, fscore] = fmeasure(Y, Ypred)
     else
         fscore = (2 * precision * recall) / (recall + precision);
     end;
-
-    fprintf('Accuracy %.2f\n', acc)
-    fprintf('F-measure %f\n', fscore)
+    %fprintf('Accuracy %.2f\n', acc)
+    %fprintf('F-measure %f\n', fscore)
     
     
