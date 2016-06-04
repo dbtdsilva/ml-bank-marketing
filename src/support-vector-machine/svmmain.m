@@ -26,10 +26,21 @@ Y = not(data(:, end));
 %colormap(cmap);
 %scatter(score(:,1), score(:,2), 40, Y);
 
-%% COMPUTING SVM
-svmModel = svmtrain(X, Y, 'kernel_function', 'rbf');
-out = svmclassify(svmModel, X);
+%% COMPUTING SVMs
+index = 15;
+crossvalid_separations = 20;
+[ TrainX, TestX ] = splitset(X, index, crossvalid_separations);
+[ TrainY, TestY ] = splitset(Y, index, crossvalid_separations);
+svmModel = fitcsvm(TrainX, TrainY, ...
+    'Standardize',true, ...
+    'KernelFunction','polynomial',...
+    'KernelScale','auto', ...
+    'OutlierFraction', 0 ...
+    ... %'IterationLimit', 1e2 ...
+    ... %'BoxConstraint', 2 ...%, ...
+ );
+out = predict(svmModel, TestX);
 %% COMPUTING FMEASURE
 %Ypred = zeros(length(Y), 1);
-[acc, fscore] = fmeasure(Y, out);
+[acc, fscore] = fmeasure(TestY, out);
 
