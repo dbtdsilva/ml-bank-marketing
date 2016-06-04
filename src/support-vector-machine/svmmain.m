@@ -26,10 +26,27 @@ Y = not(data(:, end));
 %colormap(cmap);
 %scatter(score(:,1), score(:,2), 40, Y);
 
-%% COMPUTING SVM
-svmModel = svmtrain(X, Y, 'kernel_function', 'rbf');
-out = svmclassify(svmModel, X);
-%% COMPUTING FMEASURE
-%Ypred = zeros(length(Y), 1);
-[acc, fscore] = fmeasure(Y, out);
+%% APPLYING CROSS VALIDATION
+crossvalid = 10;
 
+stats = zeros(crossvalid, 2);
+for index = 1:crossvalid
+    %% COMPUTING SVM
+    [ TrainX, TestX ] = splitset(X, index, crossvalid);
+    [ TrainY, TestY ] = splitset(Y, index, crossvalid);
+    svmModel = fitcsvm(TrainX, TrainY, ...
+        'Standardize',true, ...
+        'KernelFunction','polynomial',...
+        'KernelScale','auto', ...
+        'OutlierFraction', 0 ...
+        ... %'IterationLimit', 1e2 ...
+        ... %'BoxConstraint', 2 ...%, ...
+     );
+    out = predict(svmModel, TestX);
+    %% COMPUTING FMEASURE
+    %Ypred = zeros(length(Y), 1);
+    [acc, fscore] = fmeasure(TestY, out);
+    stats(index, :) = [fscore, acc];
+    fprintf('F-Measure: %.4f, Accuracy: %.4f\n', fscore, acc)
+end
+mean(stats)
