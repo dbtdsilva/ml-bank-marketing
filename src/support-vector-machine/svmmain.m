@@ -1,21 +1,29 @@
 % Author: Diogo Silva
 % Email Address: dbtds@ua.pt
+
+%% NOTE:
+%% You must set your workspace to /ml-bank-marketing/src (CORRECT) and
+%% NOT TO /ml-bank-marketing/src/support-vector-machine (WRONG)
 addpath('support-vector-machine/libsvm-3.21/matlab/')
 addpath('support-vector-machine')
+% More complete dataset, it will take really long to load.
 %data = csvread('data/bank-fixed-full.csv'); 
+% 10% random data from the complete dataset
 data = csvread('data/bank-fixed.csv'); 
-
-colorstring = 'rbgry';
-%scatter(data(:, 1), data(:, 2), colorClass(data(:,7) + 1))
 
 X = data(:,1:end-1);
 Y = not(data(:, end)); % inverting -> yes is 1 and no is 0
 
-% 
+% Supports debug mode
+DEBUG = false;
+
 %% TRYING PCA ANALYSIS
 Xfiltered = X;
- 
+
+% Forcing 2 components to be able to represent in a plot
 [coeff,score,latent,tsquared] = pca(Xfiltered, 'NumComponents', 2);
+% Xcentered shows the difference between the real value and the correlated
+% one
 Xcentered = score*coeff';
 
 cmap = [1 0 0; 0 1 0; 0 0 1];
@@ -56,9 +64,13 @@ for selectAlgorithm = 1:1:length(algorithms)
         stats = zeros(crossvalid, 6);
         for index = 1:crossvalid
             %% COMPUTING SVM
+            % K-FOLD - Getting the respective Train and Test sets
+            % This function is implemented on splitset.m
             [ TrainX, TestX ] = splitset(Xnorm, index, crossvalid);
             [ TrainY, TestY ] = splitset(Y, index, crossvalid);
-            fprintf('Training.. ');
+            if DEBUG
+                fprintf('Training.. ');
+            end
             %fitcsvm(TrainX, TrainY, 'Standardize', true, 'KernelFunction', 'mrbf')
             prior0 = mean(TrainY);
             prior1 = 1 - prior0;
@@ -76,21 +88,32 @@ for selectAlgorithm = 1:1:length(algorithms)
             );
             trainTiming = toc;
             % poly, SMO
-            fprintf('Trained! Predicting.. ');
+            if DEBUG
+                fprintf('Trained! Predicting.. ');
+            end
             tic
             out = predict(svmModel, TestX);
             predictTiming = toc;
-            fprintf('Predicted! ');
+            if DEBUG
+                fprintf('Predicted! ');
+            end
             %% COMPUTING FMEASURE
+            % This function is implemented on fmeasure.m
             [acc, fscore, recall, precision] = fmeasure(TestY, out);
             stats(index, :) = [fscore, acc, recall, precision, trainTiming, predictTiming];
-            fprintf('F-Measure: %.4f, Accuracy: %.4f, Recall: %.4f, Precision: %.4f\n', fscore, acc, recall, precision)
+            if DEBUG
+                fprintf('F-Measure: %.4f, Accuracy: %.4f, Recall: %.4f, Precision: %.4f\n', fscore, acc, recall, precision)
+            end
         end
-        stats_mean(end+1,:) = [kernelScale mean(stats)]
+        % Calculating the mean of the stats from the K-fold
+        stats_mean(end+1,:) = [kernelScale mean(stats)];
     end
+    fprintf('Algorithm: %s', algo{:})
+    stats_mean
     figure(2)
     plot(stats_mean(:,1), stats_mean(:,4), color{:}, ...
-        stats_mean(:,1), stats_mean(:,5), strcat('--', color{:}))
+        stats_mean(:,1), stats_mean(:,5), strcat('--', color{:}), ...
+        stats_mean(:,1), stats_mean(:,2), strcat(':', color{:}))
     hold on
     
     figure(3)
@@ -101,11 +124,17 @@ for selectAlgorithm = 1:1:length(algorithms)
     plot(stats_mean(:,1), stats_mean(:,6), color{:}, ...
         stats_mean(:,1), stats_mean(:,7), strcat('--', color{:}))
     hold on
+    
+    figure(5)
+    plot(stats_mean(:,1), stats_mean(:,2), color{:})
+    hold on
 end
 figure(2)
 hold off
 title('Recall and Precision')
-legend({'Linear Recall', 'Linear Precision', 'Polynomial Recall','Polynomial Precision', 'RBF Recall', 'RBF Precision'})
+legend({'Linear Recall', 'Linear Precision', 'Linear F-Measure', ...
+    'Polynomial Recall','Polynomial Precision', 'Polynomial F-Measure', ...
+    'RBF Recall', 'RBF Precision', 'RBF F-Measure'})
 xlabel('Kernel Scaling (\gamma and/or \sigma)')
 ylabel('Measure (from 0 to 1)')
 
@@ -122,3 +151,10 @@ title('Train and Predict Duration')
 legend({'Linear Train', 'Linear Predict', 'Polynomial Train','Polynomial Predict', 'RBF Train', 'RBF Predict'})
 xlabel('Kernel Scaling (\gamma and/or \sigma)')
 ylabel('Duration (seconds)')
+
+figure(5)
+hold off
+title('F-measure')
+legend({'Linear', 'Polynomial','RBF'})
+xlabel('Kernel Scaling (\gamma and/or \sigma)')
+ylabel('Measure (from 0 to 1)')
