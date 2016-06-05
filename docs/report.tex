@@ -11,6 +11,7 @@
 \usepackage{wrapfig}
 \usepackage{float}
 \usepackage{color}
+\usepackage{amsmath}
 \usepackage{eurosym}
 %
 % Valid options are:
@@ -60,7 +61,11 @@ Os dados que vão ser utilizados para este trabalho estão disponíveis em:
 Note-se que as operações listadas podem não ter sido aplicadas sobre os dados para todos os algoritmos, por exemplo, discretização não é necessária em Support Vector Machines, no entanto é necessária em Naive Bayes (sendo que na descrição do algoritmo é referido a operação efetuada sobre os dados).
 
 \subsubsection{Enumeração}
-Este método é necessário para todos os algoritmos devido ao facto de determinados atributos serem texto, como por exemplo, o atributo ‘month’ que pode assumir os valores (jan, feb, mar, ..., nov', dec) passa a assumir os valores 0, 1, 2, ..., 10, 11). O tratamento de texto durante o processamento de um algoritmo é algo pesado, enquanto efetuar a transformação do texto em inteiros antes do algoritmo não tem qualquer implicação.
+
+
+Desenvolvimento - Esta operação foi efectuada sobre todos os algoritmos, sendo que foi desenvolvida através de um ficheiro PYTHON colocado na pasta src/data com o nome “transform\_data.py” sendo que o script vê todos os atributos que são strings e transforma pela ordem pedida pelo utilizador em números.\\
+
+Lógica - Este método é necessário para todos os algoritmos devido ao facto de determinados atributos serem texto, como por exemplo, o atributo ‘month’ que pode assumir os valores (jan, feb, mar, ..., nov', dec) passa a assumir os valores 0, 1, 2, ..., 10, 11). O tratamento de texto durante o processamento de um algoritmo é algo pesado, enquanto efetuar a transformação do texto em inteiros antes do algoritmo não tem qualquer implicação.
 Todos os atributos no dataset que eram categóricos com texto, passam a usar inteiros.\\
 Ou seja, os atributos: job, marital, education, default, housing, loan, contact, month, day\_of\_week, poutcome.
 
@@ -71,10 +76,15 @@ Este método consiste em tornar um dado atributo que pertence a um domínio cont
 \subsubsection{Normalização - Feature Scaling}
 
 Os dados vão ser normalizados não porque se tem o mesmo atributo em escalas diferentes (e.g. um valor estar em metros e o outro em milhas) mas porque se tem atributos que variam entre 0 e 10 e outros a variar entre 0 e 10000, para algoritmos que minimizam uma dada função de custo (e.g. SVM) e se os atributos estiverem normalizados, o algoritmo converge muito mais rápido.
-A normalização que vai ser aplicada é a seguinte: X=X - XminXmax - Xmin
+A normalização que vai ser aplicada é a seguinte: 
+\begin{center}{${X} = \frac{X - Xmin}{Xmax - Xmin}$}
+\end{center}
+
 Sendo que qualquer atributo passa a ter valores entre 0 e 1.
 
 \section{Descrição de operações para avaliar os algoritmos}
+
+Desenvolvimento - Esta operação foi efectuada sobre todos os algoritmos, sendo que foi desenvolvida através de uma função MATLAB/Octave colocado na pasta src com o nome “fmeasure.m” sendo que recebe o class set esperado e o class set calculado, devolvendo o “accuracy”, “recall”, “precision” e “f-measure”. Permitindo assim tirar todas as conclusões necessárias.\\
 
 Por norma “accuracy” chega para efectuar uma medição de acerto de um dado algoritmo, no entanto quando se trata de um caso de “Skewed classes” (quando existe muitos mais exemplos que pertencem a uma classe do que a outra), como é o caso, no dataset que vamos operar existe 36548 registos que pertencem a classe 0 e 4640 que pertencem a classe 1, estamos perante uma situação em que a classe positiva contém apenas 12\% do dataset, o que se torna dificil de avaliar usando apenas a fórmula “accuracy”.
 Sendo assim para medir o desempenho de um dado algoritmo vai ser usado “F-measure” de forma a evitar este problema.
@@ -95,6 +105,7 @@ Bibliografia consultada:\\
 
 \subsection{Support Vector Machine (SVM)}
 
+\subsubsection{Teoria}
 SVM é um algoritmo que permite efetuar classificação ou regressão sobre determinados dados, mais precisamente permite criar um “hiperplano” sobre N dimensões, neste caso, vamos ter 17 dimensões que são a quantidade de atributos (como são 17 dimensões não é visível num gráfico 2D ou 3D, sendo que seja provável que se aplique PCA para tornar visível o resultado do algoritmo graficamente).\\
 
 Este algoritmo também é conhecido por “Maximum Margin Classifier” devido ao criar um plano de N dimensões tentar deixar a margem máxima (e equivalente) entre classes.\\
@@ -110,8 +121,70 @@ Bibliografia usada:\\
 \url{https://www.youtube.com/watch?v=pkQyhSyP2QU&list=PLnnr1O8OWc6Zpr_yeQCPizmMbXpmsHXyx} - Coursera Course “Machine Learning” (SVM related videos)\\
 \url{https://en.wikipedia.org/wiki/Support_vector_machine} - Conceitos foram pesquisados na Wikipedia, nos vídeos de youtube referidos acima e nos slides teóricos
 
+\subsubsection{Desenvolvimento - Biblioteca/Software usado}
+Inicialmente estava-se a usar Octave para fazer o desenvolvimento do SVM com a biblioteca LIBSVM.\\
+LIBSVM: \url{https://www.csie.ntu.edu.tw/~cjlin/libsvm/}\\
+No entanto notou-se que esta biblioteca não está completamente optimizada quando comparada com a biblioteca fornecida pelo MATLAB fitcsvm (no pacote stats), sendo que a biblioteca do MATLAB permite fazer a normalização dos valores adequada usando apenas um argumento no fitcsvm, como também permite definir o KernelScale em “auto” que significa que parâmetros como gamma e sigma do kernel RBF (por exemplo) são minimizados automaticamente para encontrar os melhores valores de desempenho.\\
+Para além disso ainda permite definir a probabilidade de cada classe (uma optimização fornecida pelo fitcsvm) sendo que se fez a mean(TrainY) para a probabilidade da classe 0 ('no', classe mais provável) e $1 - mean(TrainY)$ para a classe 1 ('yes', classe menos provavel).
 
-\bibliography{report} % use a field named url or \url{} for URLs
+Sendo que a opção final foi de usar o MATLAB para desenvolver SVM. 
+
+\subsubsection{Desenvolvimento - Análise da PCA}
+
+Inicialmente foi pensado usar PCA para permitir a visualização dos 20 atributos, sendo que se transformava esses 20 atributos em 2 atributos que são os atributos correlacionados entre si, como se fosse dois novos atributos (componentes).
+
+\begin{figure}[H]
+\centerline{\includegraphics[width=230pt]{images/svm_pca.png}}
+\caption{Resultado da PCA de 20 atributos para 2 componentes}
+\label{img:complete}
+\end{figure}
+
+É possível verificar que existe classes nos dois ramos que foram separados, sendo que o ideal seria estar uma classe num ramo e outra noutro, ou pelo menos serem faceis de identificar as classes, o que significa que existe atributos que não colaboram muito para o cálculo da classe. Sendo que PCA não ajudou relativamente a visualização dos 20 atributos, tendo que se optar por fazer um estudo sobre as métricas de desempenho (accuracy, f-measure, recall, precision).
+
+\subsubsection{Desenvolvimento - Estratégia adoptada}
+
+Para o desenvolvimento do SVM usando as bibliotecas de MATLAB utilizou-se a seguinte sequência de passos:
+\begin{enumerate}
+\item Y = not(data(:, end)); Tornar a classe menos provável, a classe com o valor 1 sendo que o recall e o precision consideram que a classe menos provável é a classe 1 e a mais provável pertence a classe 0, sendo que na fórmula de cada um contém os True Positives em conta e não os True Negatives.
+\item Normalizar os dados entre 0 e 1; $Xnorm = (X - repmat(minX, lX, 1)) ./ repmat(rangeX, lX, 1); $\\Encontra-se nas linhas 46 a 49 do script svmmain.m. Esta normalização vai permitir o SVM convergir mais rapidamente e até obter melhores valores devido ao conceito de kernel ter a distância entre os valores (basicamente vamos estar a normalizar as distâncias como consequência, o que é bom).
+\item Obter os sets de Treino e de Teste usando cross validation, mais especificamente usou-se K-Fold devido a não se querer qualquer relação entre o Treino e o Teste. Cross-validation foi realizado na função 'splitset.m'.
+\item Treinar os parametros do SVM recorrendo ao fitcsvm.
+\item Obter os resultados do SVM para o set de Teste usando predict.
+\item Calcular o desempenho do algoritmo e fazer a média para o K-Fold.
+\end{enumerate}
+
+\subsubsection{Desenvolvimento - Pré-análise}
+
+Sendo que 10\% do dataset pertence a uma classe e 90\% pertence a outra classe, estamos num caso de 'Skewed Classes' sendo que existe a necessidade de recorrer a outra medidas que não 'accuracy' porque esta não leva em conta as classes em minoria, se eu desenvolver um algoritmo estático que diga que um exemplo pertence sempre a classe maioritaria, vou obter um 'accurary' de 90\%, no entanto o algoritmo não é muito bom porque nunca detecta casos da outra classe que são os mais importantes.\\
+
+Tendo em conta o contexto real, no dataset pretende-se saber se um dado cliente vai subscrever a um depósito a termo ou não, sendo que a classe 1 corresponde ao cliente subscrever e classe 0 a não subscrever.\\
+
+O banco tem todo o interesse de notificar todos os clientes que têm tendencia a subscrever um deposito a termo de novas ofertas sendo que é mais importante a medida de 'recall' do que 'precision'. O 'recall' serve para saber qual a percentagem de acerto dos casos em que a classe era 1 e que o algoritmo conseguiu detectar como da classe 1, ou seja, quanto maior o recall, maior é a probabilidade de conseguir atingir os clientes pretendidos.\\
+
+Por outro lado, menos importante, o 'precision' que indica da percentagem dos clientes que o algoritmo detectou como pertencerem a classe 1 e que realmente eram dessa classe, ou seja, se o 'precision' for baixo vai acontecer que o banco vai estar a notificar pessoas que não eram supostas de novas ofertas.\\
+
+No entanto, o 'recall' é mais importante que o 'precision' porque mais vale notificar pessoas a mais e atingir as que se pretende do que notificar a menos e não atingir as que se pretende.
+
+\subsubsection{Desenvolvimento - Análise de Desempenho}
+
+Para calcular o melhor desempenho do SVM sobre o dataset decidiu-se variar os parametros de entrada de cada Kernel. Sendo que nesta parte o MATLAB facilita um pouco fornecendo o parâmetro KernelScaling que permite variar um Kernel na sua totalidade.\\
+
+\begin{figure}[H]
+\centerline{\includegraphics[width=290pt]{images/svm_recall_precision.png}}
+\caption{Precision, Recall e F-Measure para cada algoritmo}
+\label{img:complete}
+\end{figure}
+
+
+O gráfico anterior mostra que é possível atingir 'recall's bastante altos facilmente, que é o que se pretende, no entanto já que é possível obter recall bastante alto, vai-se também tentar optimizar a 'precision' o máximo possível sem que o 'recall' tenha muitas implicações.\\
+
+SVM Linear - É possível verificar que com SVM linear é possível obter um 'recall' de ~0.97 e um 'precision' de ~0.3 (sendo esta a melhor situação para o SVM linear), sendo que o melhor f-measure para este caso é de 0.45, o que é um pouco baixo, apesar que para o banco já seria agradável porque conseguir notificar os clientes pretendidos sem falhar praticamente nenhum, no entanto iria estar a incomodar 70\% dos restantes devido ao precision estar baixo. \\
+
+SVM Polinomial - Foi verificado que o meu grau do polinomio é obtido para 3, sendo que todas as medições de desempenho foram efectuadas para essa medida.
+
+
+
+%\bibliography{report} % use a field named url or \url{} for URLs
 %\url{www.ua.pt}
 % Note: the \bibliographystyle is set automatically
 
