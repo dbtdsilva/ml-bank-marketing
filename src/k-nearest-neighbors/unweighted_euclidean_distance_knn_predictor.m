@@ -1,5 +1,5 @@
-function Ypred = euclidean_distance_knn_predictor(X, Y, Xpred, Kvalue)
-% Euclidean distance
+function Ypred = unweighted_euclidean_distance_knn_predictor(X, Y, Xpred, Kvalue)
+% Unweighted Euclidean distance predictor
   
   dist = sqrt(sum((X-Xpred) .^ 2, 2));
   [sortedValues, sortedIndex] = sort(dist, 'ascend');
@@ -19,4 +19,5 @@ function Ypred = euclidean_distance_knn_predictor(X, Y, Xpred, Kvalue)
       Ypred = 1;
     endif
   endif
-    
+
+end
