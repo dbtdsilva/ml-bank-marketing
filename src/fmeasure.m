@@ -1,4 +1,4 @@
-function [acc, fscore] = fmeasure(Y, Ypred)
+function [acc, fscore, recall, precision] = fmeasure(Y, Ypred)
 % FMEASURE - Computes the f-measure metric.
 % This function calculates the f-measure using a vector with the 
 % actual classes and the predicted classes.
@@ -12,7 +12,7 @@ function [acc, fscore] = fmeasure(Y, Ypred)
     acc = (true_positives + true_negatives) / (true_positives + true_negatives + false_positives + false_negatives);
     if true_positives + false_negatives == 0
         recall = 0;
-    else
+    else,
         recall = true_positives / (true_positives + false_negatives);
     end;
 

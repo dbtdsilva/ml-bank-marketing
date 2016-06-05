@@ -1,6 +1,6 @@
 % Author: Diogo Silva
 % Email Address: dbtds@ua.pt
-
+addpath('support-vector-machine/libsvm-3.21/matlab/')
 %data = csvread('data/bank-fixed-full.csv'); 
 data = csvread('data/bank-fixed.csv'); 
 
@@ -10,70 +10,75 @@ colorstring = 'rbgry';
 X = data(:,1:end-1);
 Y = not(data(:, end));
 
-%% TRYING PCA ANALYSIS
-Xfiltered = X;
-%Xfiltered(:,10:20) = [];
-%Xfiltered(:,1:5) = [];
-%Xfiltered(:,11) = [];
-
-[coeff,score,latent,tsquared] = pca(Xfiltered, 'NumComponents', 2);
-Xcentered = score*coeff';
-
-% 11, 13, 20 são bosta... clean
-%
-%cmap = [1 0 0; 0 1 0; 0 0 1];
-%colormap(cmap);
-%scatter(score(:,1), score(:,2), 40, Y);
-
+% 
+% %% TRYING PCA ANALYSIS
+% Xfiltered = X;
+% %Xfiltered(:,10:20) = [];
+% %Xfiltered(:,1:5) = [];
+% %Xfiltered(:,11) = [];
+% 
+% [coeff,score,latent,tsquared] = pca(Xfiltered, 'NumComponents', 2);
+% Xcentered = score*coeff';
+% 
+% % 11, 13, 20 são bosta... clean
+% %
+% %cmap = [1 0 0; 0 1 0; 0 0 1];
+% %colormap(cmap);
+% %scatter(score(:,1), score(:,2), 40, Y);
+% 
 %% APPLYING CROSS VALIDATION
 crossvalid = 7;
 
 % duration, pdays, poutcome (12, 14, 16)
 % http://www.ijeat.org/attachments/File/v4i4/D3963044415.pdf
-stats = zeros(crossvalid, 2);
 
-global mkernel
-mkernel = @(U,V) U*V';
 
-for index = 1:crossvalid
-    %% COMPUTING SVM
-    [ TrainX, TestX ] = splitset(X, index, crossvalid);
-    [ TrainY, TestY ] = splitset(Y, index, crossvalid);
-    fprintf('Training.. ');
-    svmModel = fitcsvm(TrainX, TrainY, ...
-        ... %'Alpha', 0.5 * ones(size(X,1),1), ...   % 0.5 is default for one-class
-        ... %'Weights', ones(size(TrainX,1),1), ...       % default is ones (default)
-        'CategoricalPredictors', [2,3,4,5,6,7,8,9,10,15], ... % additional set
-        ... %'CategoricalPredictors', [2,3,4,5,7,8,9,11,16], ... % base set
-        'Standardize', true, ...
-        ... %'KernelFunction','rbf',...      % rbf, linear, polynomial
-        'KernelFunction', 'kernelproxy', ...
-        'Cost', [0,2;1,0], ...
-        ... %'PolynomialOrder', 3, ...       % default is 3
-        ... %'KernelScale','auto', ...
-        ... %'OutlierFraction', 0, ...
-        ... %'BoxConstraint', 2, ...         % default is 1
-        ... %'ClipAlphas', true, ...         % default is true
-        ... %'CacheSize','maximal', ...      % default is 1000
-        ... %'GapTolerance', 0.3, ...          % default is 0
-        'Prior', 'uniform', ...       % empirical, uniform, ...
-        ... %'KernelOffset', 0, ...          % 0 for SMO, 0.1 ISDA
-        ... %'KKTTolerance', 0, ...          % defaults: 0 SMO, 1e-3 ISDA
-        ... %'ScoreTransform', 'none', ...   % 'none'-(default),'doublelogit',
-        ... %'invlogit','ismax','logit','sign','symmetric','symmetriclogit','symmetricismax'
-        ... %'DeltaGradientTolerance', 0, ...% defaults: 0 ISDA, 1e-3 SM
-        'Solver', 'SMO' ...           % ISDA (w Outl), L1QP, SMO (w/o Outl)
-     );
- 
-    % poly, SMO
-    fprintf('Trained! Predicting.. ');
-    out = predict(svmModel, TestX);
-    fprintf('Predicted! ');
-    %% COMPUTING FMEASURE
-    [acc, fscore] = fmeasure(TestY, out);
-    stats(index, :) = [fscore, acc];
-    fprintf('F-Measure: %.4f, Accuracy: %.4f\n', fscore, acc)
-end
-stats_mean = mean(stats)
-stats_std = std(stats)
+global gama 
+global sigma
+global polyorder
+gama = 1;
+sigma = 2.47;
+polyorder = 3;
+
+minX = min(X);
+rangeX = max(X)-minX;
+lX = length(X);
+Xnorm = (X - repmat(minX, lX, 1)) ./ repmat(rangeX, lX, 1);
+
+%for gama = 1:0.1:5
+    stats = zeros(crossvalid, 4);
+    for index = 1:crossvalid
+        %% COMPUTING SVM
+        [ TrainX, TestX ] = splitset(Xnorm, index, crossvalid);
+        [ TrainY, TestY ] = splitset(Y, index, crossvalid);
+        fprintf('Training.. ');
+        %fitcsvm(TrainX, TrainY, 'Standardize', true, 'KernelFunction', 'mrbf')
+        svmModel = fitcsvm(TrainX, TrainY, ...
+            'CategoricalPredictors', [2,3,4,5,6,7,8,9,10,15], ... % additional set
+            'Standardize', true, ...
+            'KernelFunction', 'rbf', ...
+            'Cost', [0,1.72;1,0], ...            % cost of misclassify
+            'KernelScale', sigma, ...
+            'Prior', [0.2 0.3], ...%'uniform', ...       % empirical, uniform, ...
+            'Solver', 'SMO' ...           % ISDA (w Outl), L1QP, SMO (w/o Outl)
+            ... %'PolynomialOrder', 3, ...       % default is 3
+            ... %'KernelOffset', 0, ...          % 0 for SMO, 0.1 ISDA
+            ... %'KKTTolerance', 0, ...          % defaults: 0 SMO, 1e-3 ISDA
+            ... %'ScoreTransform', 'doublelogit', ...   % 'none'-(default),'doublelogit',
+            ... %'invlogit','ismax','logit','sign','symmetric','symmetriclogit','symmetricismax'
+            ... %'DeltaGradientTolerance', 0, ...% defaults: 0 ISDA, 1e-3 SM
+         );
+
+        % poly, SMO
+        fprintf('Trained! Predicting.. ');
+        out = predict(svmModel, TestX);
+        fprintf('Predicted! ');
+        %% COMPUTING FMEASURE
+        [acc, fscore, recall, precision] = fmeasure(TestY, out);
+        stats(index, :) = [fscore, acc, recall, precision];
+        fprintf('F-Measure: %.4f, Accuracy: %.4f, Recall: %.4f, Precision: %.4f\n', fscore, acc, recall, precision)
+    end
+    stats_mean = [sigma mean(stats)]
+%end
+%stats_std = std(stats)
 
