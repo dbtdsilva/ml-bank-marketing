@@ -3,8 +3,8 @@ function Ypred = weighted_chebyshev_distance_knn_predictor(X, Y, Xpred, Kvalue)
   
   dist = max(abs(X-Xpred), [], 2);
   [sortedValues, sortedIndex] = sort(dist, 'ascend');
-  Ypred_0 = sum(1 ./ dist(find(Y(sortedIndex(1:Kvalue)) == 0)));
-  Ypred_1 = sum(1 ./ dist(find(Y(sortedIndex(1:Kvalue)) == 1)));
+  Ypred_0 = sum(1 ./ (dist(find(Y(sortedIndex(1:Kvalue)) == 0)) + 0.00000001));
+  Ypred_1 = sum(1 ./ (dist(find(Y(sortedIndex(1:Kvalue)) == 1)) + 0.00000001));
   Ycount_0 = sum(Y == 0);
   Ycount_1 = sum(Y == 1);
   
