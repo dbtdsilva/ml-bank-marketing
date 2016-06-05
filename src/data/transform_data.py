@@ -1,4 +1,5 @@
 import csv
+import sys
 
 def get_csv_data(filename, fieldnames, has_header=True):
     data = []
@@ -55,9 +56,9 @@ def main():
         'y' : ['yes','no']
     }
 
-    data = get_csv_data('bank-additional.csv', keys)
+    data = get_csv_data(sys.argv[1], keys)
     data_indexed = get_indexed_data(data, enums)
-    export_new_csv('bank-fixed.csv', keys, data_indexed)
+    export_new_csv(sys.argv[2], keys, data_indexed)
     # Load using Octave
     # data = csvread('car_indexed.data')
     #print(get_raw_array(keys, data_indexed))
