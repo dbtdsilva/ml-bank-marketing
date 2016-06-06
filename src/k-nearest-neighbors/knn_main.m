@@ -125,3 +125,35 @@ for i = 1:columns(KVal)
   
   wmi_stats(i, 1:4) = mean(stats);
 endfor
+
+% Plotting Accuracy Performance
+plot(KVal, uwc_stats(:, 1), 'r-', KVal, wc_stats(:, 1), 'r--', KVal, uwe_stats(:, 1), 'g-', KVal, we_stats(:, 1), 'g--', KVal, uwm_stats(:, 1), 'b-', KVal, wm_stats(:, 1), 'b--', KVal, uwmi_stats(:, 1), 'm-', KVal, wmi_stats(:, 1), 'm--');
+xlabel('K');
+ylabel('Accuracy');
+title('K-Nearest Neighbors Accuracy Performance');
+legend('Unweighted Chebyshev Distance', 'Weighted Chebyshev Distance', 'Unweighted Euclidean Distance', 'Weighted Euclidean Distance', 'Unweighted Manhattan Distance', 'Weighted Manhattan Distance', 'Unweighted Minkowski Distance (P=10)', 'Weighted Minkowski Distance (P=10)');
+pause;
+
+% Plotting F-Score Performance
+plot(KVal, uwc_stats(:, 2), 'r-', KVal, wc_stats(:, 2), 'r--', KVal, uwe_stats(:, 2), 'g-', KVal, we_stats(:, 2), 'g--', KVal, uwm_stats(:, 2), 'b-', KVal, wm_stats(:, 2), 'b--', KVal, uwmi_stats(:, 2), 'm-', KVal, wmi_stats(:, 2), 'm--');
+xlabel('K');
+ylabel('F-Socre');
+title('K-Nearest Neighbors F-Score Performance');
+legend('Unweighted Chebyshev Distance', 'Weighted Chebyshev Distance', 'Unweighted Euclidean Distance', 'Weighted Euclidean Distance', 'Unweighted Manhattan Distance', 'Weighted Manhattan Distance', 'Unweighted Minkowski Distance (P=10)', 'Weighted Minkowski Distance (P=10)');
+pause;
+
+% Plotting Recall Performance
+plot(KVal, uwc_stats(:, 3), 'r-', KVal, wc_stats(:, 3), 'r--', KVal, uwe_stats(:, 3), 'g-', KVal, we_stats(:, 3), 'g--', KVal, uwm_stats(:, 3), 'b-', KVal, wm_stats(:, 3), 'b--', KVal, uwmi_stats(:, 3), 'm-', KVal, wmi_stats(:, 3), 'm--');
+xlabel('K');
+ylabel('Recall');
+title('K-Nearest Neighbors Recall Performance');
+legend('Unweighted Chebyshev Distance', 'Weighted Chebyshev Distance', 'Unweighted Euclidean Distance', 'Weighted Euclidean Distance', 'Unweighted Manhattan Distance', 'Weighted Manhattan Distance', 'Unweighted Minkowski Distance (P=10)', 'Weighted Minkowski Distance (P=10)');
+pause;
+
+% Plotting Precision Performance
+plot(KVal, uwc_stats(:, 4), 'r-', KVal, wc_stats(:, 4), 'r--', KVal, uwe_stats(:, 4), 'g-', KVal, we_stats(:, 4), 'g--', KVal, uwm_stats(:, 4), 'b-', KVal, wm_stats(:, 4), 'b--', KVal, uwmi_stats(:, 4), 'm-', KVal, wmi_stats(:, 4), 'm--');
+xlabel('K');
+ylabel('Precision');
+title('K-Nearest Neighbors Precision Performance');
+legend('Unweighted Chebyshev Distance', 'Weighted Chebyshev Distance', 'Unweighted Euclidean Distance', 'Weighted Euclidean Distance', 'Unweighted Manhattan Distance', 'Weighted Manhattan Distance', 'Unweighted Minkowski Distance (P=10)', 'Weighted Minkowski Distance (P=10)');
+pause;

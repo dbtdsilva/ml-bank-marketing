@@ -144,28 +144,39 @@ D (p, q) := $(\sum_{i=1}^{n}(|p_i - q_i|)^p)^{1/p}$\\
 
 \subsubsection{Desenvolvimento - Análise do Desempenho}
 
+De forma a determinar qual a melhor forma de cálculo de distância, o algoritmo foi testado utilizando diferentes porções do data set obtendo-se depois o valor médio para cada valor de K selecionado.\\
+
 \begin{figure}[H]
 \centerline{\includegraphics[width=230pt]{images/knn_graph_accuracy.png}}
-\caption{Resultado da PCA de 20 atributos para 2 componentes}
+\caption{Accuracy do K-Nearest Neighbors}
 \label{img:complete}
 \end{figure}
+
+Embora possa parecer que o algoritmo segundo tenha uma Accuracy muito boa, esta não é um fator relevante, visto que o data set não tem percentagem igual de dados para cada classe.\\
 
 \begin{figure}[H]
 \centerline{\includegraphics[width=230pt]{images/knn_graph_f-score.png}}
-\caption{Resultado da PCA de 20 atributos para 2 componentes}
+\caption{F-Score do K-Nearest Neighbors}
 \label{img:complete}
 \end{figure}
+
+O F-Score não demonstra bons resultados, o que nos leva a crer que este algoritmo não seja o melhor para classificar este data set.\\
 
 \begin{figure}[H]
 \centerline{\includegraphics[width=230pt]{images/knn_graph_recall.png}}
-\caption{Resultado da PCA de 20 atributos para 2 componentes}
+\caption{Recall do K-Nearest Neighbors}
 \label{img:complete}
 \end{figure}
 
+O Recall também não mostra bons resultados, visto que o valor mais alto ronda os 0.52.
 
 Bibliografia consultada:\\
 \url{https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm}\\
 \url{http://scikit-learn.org/stable/modules/neighbors.html}
+
+\subsubsection{Conclusão}
+
+O fator mais importante neste problema é o Recall, sendo que o banco pretende saber se um determinado cliente tem maior tendência a subscrever a prazo ou não. É possível verificar nos gráficos acima que as melhores formas de calcular a distância entre os vizinhos que são as não uniformes (weighted), ou seja, onde consideramos que um vizinho mais próximo tem maior influência na escolha da classe, têm melhores resultados tanto no F-Score como no Recall, que são os fatores mais importantes neste problema.\\
 
 \subsection{Support Vector Machine (SVM)}
 
