@@ -82,10 +82,6 @@ A normalização que vai ser aplicada é a seguinte:
 
 Sendo que qualquer atributo passa a ter valores entre 0 e 1.
 
-\subsubsection{Cross Validation}
-
-Foi aplicado o método K-fold de forma a evitar erros na análise de cada algoritmos, sendo que é tirada uma porção do dataset para testes e a restante para treino, sendo que é efectuada esta divisão várias vezes durante este método.
-
 \section{Descrição de operações para avaliar os algoritmos}
 
 Desenvolvimento - Esta operação foi efectuada sobre todos os algoritmos, sendo que foi desenvolvida através de uma função MATLAB/Octave colocado na pasta src com o nome “fmeasure.m” sendo que recebe o class set esperado e o class set calculado, devolvendo o “accuracy”, “recall”, “precision” e “f-measure”. Permitindo assim tirar todas as conclusões necessárias.\\
@@ -248,27 +244,9 @@ O gráfico anterior mostra que é possível atingir 'recall's bastante altos fac
 
 SVM Linear - É possível verificar que com SVM linear é possível obter um 'recall' de ~0.97 e um 'precision' de ~0.3 (sendo esta a melhor situação para o SVM linear), sendo que o melhor f-measure para este caso é de 0.45, o que é um pouco baixo, apesar que para o banco já seria agradável porque conseguir notificar os clientes pretendidos sem falhar praticamente nenhum, no entanto iria estar a incomodar 70\% dos restantes devido ao precision estar baixo. \\
 
-SVM Polinomial - Foi verificado que o meu grau do polinomio é obtido para 3, sendo que todas as medições de desempenho foram efectuadas para essa medida. Para um KernelScaling de 5 é quando os valores são melhores para o caso do kernel polinomial, se reparar-mos a partir de um Kernel Scaling de 2 já se está a sacrificar 'precision' por 'recall' que será o pretendido, sendo que o melhor de 'precision' é de 0.55 em que o 'recall' é de 0.55 também, o que é bastante baixo para o objectivo do problema. No entanto se se sacrificar o precision até ~0.35 é possível obter um 'recall' de 0.9, o que não é mau, melhor que a situação linear.\\
+SVM Polinomial - Foi verificado que o meu grau do polinomio é obtido para 3, sendo que todas as medições de desempenho foram efectuadas para essa medida.
 
-SVM RBF (Gaussiano) - Esta é a melhor situação porque é possível obter um 'recall' de 0.9 e um 'precision' de 0.4. No entanto também é possível obter um 'recall' de ~0.99 e um 'precision' de ~0.35 o que seria perfeito a nível de atingir os clientes pretendidos.\\
 
-\begin{figure}[H]
-\centerline{\includegraphics[width=250pt]{images/svm_accuracy.png}}
-\caption{Accuracy para cada algoritmo}
-\label{img:complete}
-\end{figure}
-
-Note-se que os valores de 'accuracy' estão sempre bastante altos para as situações com mais benefícios e para o Kernel Scaling entre 2 e 6 que foram os referidos anteriormente.
-
-\subsubsection{Desenvolvimento - Conclusão}
-
-Existe várias situações que o banco pode optar:
-\begin{enumerate}
-\item Obter a totalidade de clientes que têm tendência a subscrever a depósitos a termo ('recall' máximo ~0.99), esquecendo a importância de nesses clientes conter alguns que não lhes interessam os depósitos a termo ('precision' muito baixo), o algoritmo que o banco vai usar deve ser SVM com um Kernel polinomial e aumentar o Kernel Scaling até 10, de forma a obter um 'recall' de ~0.99 e um 'precision' de ~0.3. Sendo que o polinomial representa melhores as situações para um valor máximo de 'recall'.
-\item Obter a maior parte dos clientes com tendência a subscrever ('recall' bastante alto ~0.9), não esquecendo a importância de não notificar clientes que não estão interessados ('precision' médio ~0.4). Para esta opção é necessário configurar com um SVM do tipo RBF e com um Kernel Scaling de 2 unidades.
-\end{enumerate}
-
-Pode-se concluir que SVM cobre bem a situação pretendida pelo banco, no entanto, a taxa de clientes que é atingida em excesso (apesar de acertar nos clientes pretendidos) ainda é bastante alta.
 
 %\bibliography{report} % use a field named url or \url{} for URLs
 %\url{www.ua.pt}
