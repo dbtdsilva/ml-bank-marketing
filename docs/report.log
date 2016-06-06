@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Arch Linux) (preloaded format=pdflatex 2016.4.26)  5 JUN 2016 21:31
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Arch Linux) (preloaded format=pdflatex 2016.4.26)  6 JUN 2016 01:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -504,41 +504,114 @@ File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
 )
 Package color Info: Driver file: pdftex.def on input line 142.
 )
+(/usr/share/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2013/01/14 v2.14 AMS math features
+\@mathmargin=\skip44
+
+For additional information on amsmath, use the `?' option.
+(/usr/share/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2000/06/29 v2.01
+
+(/usr/share/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0
+\@emptytoks=\toks21
+\ex@=\dimen117
+))
+(/usr/share/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d
+\pmbraise@=\dimen118
+)
+(/usr/share/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 1999/12/14 v2.01 operator names
+)
+\inf@bad=\count106
+LaTeX Info: Redefining \frac on input line 210.
+\uproot@=\count107
+\leftroot@=\count108
+LaTeX Info: Redefining \overline on input line 306.
+\classnum@=\count109
+\DOTSCASE@=\count110
+LaTeX Info: Redefining \ldots on input line 378.
+LaTeX Info: Redefining \dots on input line 381.
+LaTeX Info: Redefining \cdots on input line 466.
+\Mathstrutbox@=\box31
+\strutbox@=\box32
+\big@size=\dimen119
+LaTeX Font Info:    Redeclaring font encoding OML on input line 566.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 567.
+\macc@depth=\count111
+\c@MaxMatrixCols=\count112
+\dotsspace@=\muskip11
+\c@parentequation=\count113
+\dspbrk@lvl=\count114
+\tag@help=\toks22
+\row@=\count115
+\column@=\count116
+\maxfields@=\count117
+\andhelp@=\toks23
+\eqnshift@=\dimen120
+\alignsep@=\dimen121
+\tagshift@=\dimen122
+\tagwidth@=\dimen123
+\totwidth@=\dimen124
+\lineht@=\dimen125
+\@envbody=\toks24
+\multlinegap=\skip45
+\multlinetaggap=\skip46
+\mathdisplay@stack=\toks25
+LaTeX Info: Redefining \[ on input line 2665.
+LaTeX Info: Redefining \] on input line 2666.
+)
 (/usr/share/texmf-dist/tex/latex/eurosym/eurosym.sty
 Package: eurosym 1998/08/06 v1.1 European currency symbol ``Euro''
-\@eurobox=\box31
-) (./report.aux)
+\@eurobox=\box33
+) (./report.aux
+
+LaTeX Warning: Label `img:complete' multiply defined.
+
+
+LaTeX Warning: Label `img:complete' multiply defined.
+
+
+LaTeX Warning: Label `img:complete' multiply defined.
+
+
+LaTeX Warning: Label `img:complete' multiply defined.
+
+
+LaTeX Warning: Label `img:complete' multiply defined.
+
+)
 \openout1 = `report.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-\c@lstlisting=\count106
-
-(/usr/share/texmf-dist/tex/context/base/supp-pdf.mkii
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+\c@lstlisting=\count118
+ (/usr/share/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count107
-\scratchdimen=\dimen117
-\scratchbox=\box32
-\nofMPsegments=\count108
-\nofMParguments=\count109
-\everyMPshowfont=\toks21
-\MPscratchCnt=\count110
-\MPscratchDim=\dimen118
-\MPnumerator=\count111
-\makeMPintoPDFobject=\count112
-\everyMPtoPDFconversion=\toks22
+\scratchcounter=\count119
+\scratchdimen=\dimen126
+\scratchbox=\box34
+\nofMPsegments=\count120
+\nofMParguments=\count121
+\everyMPshowfont=\toks26
+\MPscratchCnt=\count122
+\MPscratchDim=\dimen127
+\MPnumerator=\count123
+\makeMPintoPDFobject=\count124
+\everyMPtoPDFconversion=\toks27
 ) (/usr/share/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
 
@@ -554,8 +627,8 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-\AtBeginShipoutBox=\box33
-Package hyperref Info: Link coloring OFF on input line 39.
+\AtBeginShipoutBox=\box35
+Package hyperref Info: Link coloring OFF on input line 40.
 
 (/usr/share/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
@@ -563,66 +636,26 @@ Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 (/usr/share/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-\c@section@level=\count113
+\c@section@level=\count125
 )
-LaTeX Info: Redefining \ref on input line 39.
-LaTeX Info: Redefining \pageref on input line 39.
-LaTeX Info: Redefining \nameref on input line 39.
+LaTeX Info: Redefining \ref on input line 40.
+LaTeX Info: Redefining \pageref on input line 40.
+LaTeX Info: Redefining \nameref on input line 40.
  (./report.out) (./report.out)
 \@outlinefile=\write3
 \openout3 = `report.out'.
 
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 46.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 46.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 46.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 46.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 46.
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 56.
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 57.
  (/usr/share/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-Underfull \vbox (badness 1014) has occurred while \output is active []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 86--87
+Underfull \hbox (badness 10000) in paragraph at lines 73--74
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 88--89
-
- []
-
-
-Underfull \hbox (badness 1067) in paragraph at lines 90--91
-\T1/cmr/m/n/10 como por exem-plo dis-tân-cia Eu-cli-di-ana, dis-tân-cia
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 90--91
-
- []
-
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 91.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 91.
-[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
-
-
-]
-Underfull \hbox (badness 10000) in paragraph at lines 92--95
-[]$\T1/cmtt/m/n/10 https : / / en . wikipedia . org / wiki / K-[]nearest _
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 92--95
-[]$\T1/cmtt/m/n/10 http : / / scikit-[]learn . org / stable / modules /
+Underfull \hbox (badness 2269) in paragraph at lines 98--99
+\T1/cmr/m/n/10 to-dos os al-go-rit-mos, sendo que foi de-sen-vol-vida
  []
 
 
@@ -630,94 +663,401 @@ Underfull \hbox (badness 10000) in paragraph at lines 98--99
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 100--101
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 102--103
-
- []
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 102.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 102.
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 104--105
+]
+Underfull \hbox (badness 10000) in paragraph at lines 109--110
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 106--107
+Underfull \hbox (badness 10000) in paragraph at lines 111--112
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 108--112
+Underfull \hbox (badness 1067) in paragraph at lines 113--114
+\T1/cmr/m/n/10 como por exem-plo dis-tân-cia Eu-cli-di-ana, dis-tân-cia
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 113--114
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 115--116
+
+ []
+
+
+Underfull \hbox (badness 1132) in paragraph at lines 119--120
+[]\T1/cmr/m/n/10 No de-sen-vol-vi-mento deste al-go-ritmo utilizou-se o
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 119--120
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 130--131
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 134--135
+
+ []
+
+
+Overfull \hbox (1.71321pt too wide) in paragraph at lines 136--137
+[]\T1/cmr/m/n/10 D (p, q) := $[]$ 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 136--137
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 140--141
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 142--143
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 146--147
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 148--149
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 152--153
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 154--155
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 158--159
+
+ []
+
+<images/knn_graph_accuracy.png, id=32, 578.16pt x 434.5836pt>
+File: images/knn_graph_accuracy.png Graphic file (type png)
+
+<use images/knn_graph_accuracy.png>
+Package pdftex.def Info: images/knn_graph_accuracy.png used on input line 161.
+(pdftex.def)             Requested size: 230.0pt x 172.8821pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 165.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 165.
+ [2]
+Underfull \hbox (badness 1694) in paragraph at lines 166--167
+[]\T1/cmr/m/n/10 Embora possa pa-re-cer que o al-go-ritmo se-gundo
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 166--167
+
+ []
+
+<images/knn_graph_f-score.png, id=49, 578.16pt x 434.5836pt>
+File: images/knn_graph_f-score.png Graphic file (type png)
+
+<use images/knn_graph_f-score.png>
+Package pdftex.def Info: images/knn_graph_f-score.png used on input line 169.
+(pdftex.def)             Requested size: 230.0pt x 172.8821pt.
+
+<images/knn_graph_recall.png, id=50, 578.16pt x 434.5836pt>
+File: images/knn_graph_recall.png Graphic file (type png)
+
+<use images/knn_graph_recall.png>
+Package pdftex.def Info: images/knn_graph_recall.png used on input line 177.
+(pdftex.def)             Requested size: 230.0pt x 172.8821pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 184--187
+[]$\T1/cmtt/m/n/10 https : / / en . wikipedia . org / wiki / K-[]nearest _
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 184--187
+[]$\T1/cmtt/m/n/10 http : / / scikit-[]learn . org / stable / modules /
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 190--191
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 197--198
+
+ []
+
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 199.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 199.
+[3pdfTeX warning (ext4): destination with the same identifier (name{figure.1}) 
+has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.199 E
+       ste algoritmo tambÃ©m Ã© conhecido por â€œMaximum Margin Classifierâ€...
+pdfTeX warning (ext4): destination with the same identifier (name{figure.2}) ha
+s been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.199 E
+       ste algoritmo tambÃ©m Ã© conhecido por â€œMaximum Margin Classifierâ€...
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3}) ha
+s been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.199 E
+       ste algoritmo tambÃ©m Ã© conhecido por â€œMaximum Margin Classifierâ€...
+ <./images/knn_graph_accuracy.png (PNG copy)> <./images/knn_graph_f-score.png (
+PNG copy)> <./images/knn_graph_recall.png (PNG copy)>]
+Underfull \hbox (badness 10000) in paragraph at lines 199--200
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 201--202
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 203--204
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 205--206
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 207--211
 []$\T1/cmtt/m/n/10 https : / / www . csie . ntu . edu . tw / ~cjlin / libsvm/$[
 ] \T1/cmr/m/n/10 -
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 108--112
+Underfull \hbox (badness 10000) in paragraph at lines 207--211
 []$\T1/cmtt/m/n/10 https : / / www . youtube . com / watch ? v = pkQyhSyP2QU &
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 108--112
+Underfull \hbox (badness 10000) in paragraph at lines 207--211
 \T1/cmtt/m/n/10 list = PLnnr1O8OWc6Zpr _ yeQCPizmMbXpmsHXyx$[] \T1/cmr/m/n/10 -
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 108--112
+Underfull \hbox (badness 10000) in paragraph at lines 207--211
 []$\T1/cmtt/m/n/10 https : / / en . wikipedia . org / wiki / Support _
  []
 
 
-Underfull \hbox (badness 6775) in paragraph at lines 108--112
+Underfull \hbox (badness 6775) in paragraph at lines 207--211
 \T1/cmtt/m/n/10 vector _ machine$[] \T1/cmr/m/n/10 - Con-cei-tos fo-ram pes-qui
 -sa-dos
  []
 
-(./report.bbl
 
-LaTeX Warning: Empty `thebibliography' environment on input line 3.
+Underfull \hbox (badness 8000) in paragraph at lines 213--217
+\T1/cmr/m/n/10 LIBSVM: []$\T1/cmtt/m/n/10 https : / / www . csie . ntu . edu . 
+tw / ~cjlin /
+ []
 
-)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 118.
+<images/svm_pca.png, id=70, 467.49657pt x 444.91219pt>
+File: images/svm_pca.png Graphic file (type png)
+
+<use images/svm_pca.png>
+Package pdftex.def Info: images/svm_pca.png used on input line 225.
+(pdftex.def)             Requested size: 230.0pt x 218.89142pt.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 118.
+(babel)             in language  on input line 240.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 118.
- [2]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 118.
+(babel)             in language  on input line 240.
+ [4pdfTeX warning (ext4): destination with the same identifier (name{figure.4})
+ has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.240 \item O
+             bter os resultados do SVM para o set de Teste usando predict. <./i
+mages/svm_pca.png (PNG copy)>]
+Underfull \hbox (badness 10000) in paragraph at lines 246--247
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 248--249
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 250--251
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 252--253
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 258--259
+
+ []
+
+<images/svm_recall_precision.png, id=85, 696.35156pt x 568.37344pt>
+File: images/svm_recall_precision.png Graphic file (type png)
+
+<use images/svm_recall_precision.png>
+Package pdftex.def Info: images/svm_recall_precision.png used on input line 261
+.
+(pdftex.def)             Requested size: 290.0pt x 236.70316pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \hbox (badness 1117) in paragraph at lines 267--268
+[]\T1/cmr/m/n/10 O grá-fico an-te-rior mos-tra que é pos-sí-vel atin-gir
+ []
+
+
+Underfull \hbox (badness 1715) in paragraph at lines 267--268
+\T1/cmr/m/n/10 bas-tante alto, vai-se tam-bém ten-tar op-ti-mi-zar a
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 267--268
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 269--270
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 271--272
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 273--274
+
+ []
+
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 274.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 274.
+[5pdfTeX warning (ext4): destination with the same identifier (name{figure.5}) 
+has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.274 
+       <./images/svm_recall_precision.png (PNG copy)>]
+<images/svm_accuracy.png, id=96, 633.11531pt x 586.44093pt>
+File: images/svm_accuracy.png Graphic file (type png)
+
+<use images/svm_accuracy.png>
+Package pdftex.def Info: images/svm_accuracy.png used on input line 276.
+(pdftex.def)             Requested size: 250.0pt x 231.56555pt.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 297.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 297.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 297.
+ [6pdfTeX warning (ext4): destination with the same identifier (name{figure.6})
+ has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.297 \end{document}
+                    
+
+ <./images/svm_accuracy.png (PNG copy)>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 297.
  (./report.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 118.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 118.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 297.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 297.
 Package rerunfilecheck Info: File `report.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 118.
- ) 
+
+
+LaTeX Warning: There were multiply-defined labels.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 297.
+ )
+(\end occurred when \ifx on line 277 was incomplete)
+(\end occurred when \ifx on line 262 was incomplete)
+(\end occurred when \ifx on line 226 was incomplete)
+(\end occurred when \ifx on line 178 was incomplete)
+(\end occurred when \ifx on line 170 was incomplete)
+(\end occurred when \ifx on line 162 was incomplete) 
 Here is how much of TeX's memory you used:
- 7745 strings out of 493054
- 110369 string characters out of 6140586
- 212022 words of memory out of 5000000
- 11145 multiletter control sequences out of 15000+600000
- 14124 words of font info for 34 fonts, out of 8000000 for 9000
+ 8400 strings out of 493054
+ 118255 string characters out of 6140586
+ 221432 words of memory out of 5000000
+ 11742 multiletter control sequences out of 15000+600000
+ 15927 words of font info for 40 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 32i,8n,34p,993b,333s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/t
-exmf-dist/fonts/type1/public/cm-super/sfbi0900.pfb></usr/share/texmf-dist/fonts
-/type1/public/cm-super/sfbx0900.pfb></usr/share/texmf-dist/fonts/type1/public/c
-m-super/sfbx1440.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfcc100
-0.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm0800.pfb></usr/sha
-re/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/share/texmf-dist/f
-onts/type1/public/cm-super/sfrm1200.pfb></usr/share/texmf-dist/fonts/type1/publ
-ic/cm-super/sfti1000.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sft
-t1000.pfb>
-Output written on report.pdf (2 pages, 172626 bytes).
+ 32i,8n,34p,867b,413s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf-dist/font
+s/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmex10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+mi10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/
+share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmsy7.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfbi0900.pfb></
+usr/share/texmf-dist/fonts/type1/public/cm-super/sfbx0900.pfb></usr/share/texmf
+-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/texmf-dist/fonts/typ
+e1/public/cm-super/sfcc0800.pfb></usr/share/texmf-dist/fonts/type1/public/cm-su
+per/sfcc1000.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm0800.pf
+b></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/share/t
+exmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texmf-dist/fonts
+/type1/public/cm-super/sfti1000.pfb></usr/share/texmf-dist/fonts/type1/public/c
+m-super/sftt1000.pfb>
+Output written on report.pdf (6 pages, 641307 bytes).
 PDF statistics:
- 78 PDF objects out of 1000 (max. 8388607)
- 64 compressed objects within 1 object stream
- 13 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 172 PDF objects out of 1000 (max. 8388607)
+ 139 compressed objects within 2 object streams
+ 47 named destinations out of 1000 (max. 500000)
+ 31 words of extra memory for PDF output out of 10000 (max. 10000000)
 

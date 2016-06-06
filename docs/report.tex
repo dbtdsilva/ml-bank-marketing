@@ -56,6 +56,13 @@ O processo inclui desde técnicas usadas, estratégias e até mesmo comparação
 Os dados que vão ser utilizados para este trabalho estão disponíveis em:
 \url{https://archive.ics.uci.edu/ml/datasets/Bank+Marketing}
 
+\subsection{Distribuição de Tarefas}
+
+Decision Tree - Raquel Rocha (62196)
+K-Nearest Neighbors - Eduardo Sousa (68633)
+Naive Bayes - Diogo Corte (35800)
+Support Vector Machine - Diogo Silva (60337)
+
 \subsection{Descrição das operações efetuadas}
 
 Note-se que as operações listadas podem não ter sido aplicadas sobre os dados para todos os algoritmos, por exemplo, discretização não é necessária em Support Vector Machines, no entanto é necessária em Naive Bayes (sendo que na descrição do algoritmo é referido a operação efetuada sobre os dados).
@@ -156,7 +163,7 @@ De forma a determinar qual a melhor forma de cálculo de distância, o algoritmo
 \label{img:complete}
 \end{figure}
 
-Embora possa parecer que o algoritmo segundo tenha uma Accuracy muito boa, esta não é um fator relevante, visto que o data set não tem percentagem igual de dados para cada classe.\\
+Embora possa parecer que o algoritmo segundo tenha uma Accuracy muito boa, esta não é um fator relevante, visto que o data set não tem percentagem igual de dados para cada classe. Sendo que a classe 0 tem 90\% do dataset e a classe 1 contém 10\% apenas, estamos perante uma situação de Skewed Classes.\\
 
 \begin{figure}[H]
 \centerline{\includegraphics[width=230pt]{images/knn_graph_f-score.png}}
@@ -164,7 +171,7 @@ Embora possa parecer que o algoritmo segundo tenha uma Accuracy muito boa, esta 
 \label{img:complete}
 \end{figure}
 
-O F-Score não demonstra bons resultados, o que nos leva a crer que este algoritmo não seja o melhor para classificar este data set.\\
+O F-Score não demonstra bons resultados, o que nos leva a crer que este algoritmo não seja o melhor para classificar este data set. No entanto o gráfico seguinte comprava isto, tendo em conta que o que se pretende optimizar é o 'recall' e o que o algoritmo consegue obter optimizado é o 'precision', o que acaba por perder grande interesse.
 
 \begin{figure}[H]
 \centerline{\includegraphics[width=230pt]{images/knn_graph_recall.png}}
@@ -172,7 +179,7 @@ O F-Score não demonstra bons resultados, o que nos leva a crer que este algorit
 \label{img:complete}
 \end{figure}
 
-O Recall também não mostra bons resultados, visto que o valor mais alto ronda os 0.52.
+O Recall também não mostra bons resultados, visto que o valor mais alto ronda os 0.52. No entanto era o valor que se pretendia optimizar visto que o banco pretende saber se um cliente tem tendência a subscrever um depósito a prazo, ou seja, ele pretende descobrir todos os clientes com o algoritmo, sendo menos importante a taxa com que falha essas previsões, mais vale detectar a mais do que a menos e ficarem a faltar ('precision'). Sendo essa a razão do 'precision' não ter sido apresentada em gráfico.
 
 Bibliografia consultada:\\
 \url{https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm}\\
@@ -181,6 +188,8 @@ Bibliografia consultada:\\
 \subsubsection{Conclusão}
 
 O fator mais importante neste problema é o Recall, sendo que o banco pretende saber se um determinado cliente tem maior tendência a subscrever a prazo ou não. É possível verificar nos gráficos acima que as melhores formas de calcular a distância entre os vizinhos que são as não uniformes (weighted), ou seja, onde consideramos que um vizinho mais próximo tem maior influência na escolha da classe, têm melhores resultados tanto no F-Score como no Recall, que são os fatores mais importantes neste problema.\\
+
+Este algoritmo optimiza mais o 'precision' do que o 'recall' o que é o oposto da situação óptima.
 
 \subsection{Support Vector Machine (SVM)}
 
