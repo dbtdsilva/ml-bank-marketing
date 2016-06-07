@@ -42,7 +42,7 @@
 % Note: the month must be in Portuguese
 
 \title{\textbf{Bank Marketing}\\ Exploração de Dados \\Universidade de Aveiro}
-\author{Diogo Silva 60337, Eduardo Sousa 68633}
+\author{Diogo Silva 60337, Eduardo Sousa 68633, Raquel Rocha 62196, Diogo Corte 35800}
 \maketitle
 \begin{resumo} % Note: in Portuguese
 Este relatório descreve detalhadamente o processo que foi feito para analisar o data set Bank Marketing.
@@ -57,7 +57,6 @@ Os dados que vão ser utilizados para este trabalho estão disponíveis em:
 \url{https://archive.ics.uci.edu/ml/datasets/Bank+Marketing}
 
 \subsection{Distribuição de Tarefas}
-
 Decision Tree - Raquel Rocha (62196)\\
 K-Nearest Neighbors - Eduardo Sousa (68633)\\
 Naive Bayes - Diogo Corte (35800)\\
@@ -289,6 +288,98 @@ Existe várias situações que o banco pode optar:
 \end{enumerate}
 
 Pode-se concluir que SVM cobre bem a situação pretendida pelo banco, no entanto, a taxa de clientes que é atingida em excesso (apesar de acertar nos clientes pretendidos) ainda é bastante alta.
+
+
+\subsection{Naive Bayes}
+
+\subsubsection{Teoria}
+Naive bayes são classificadores probabilísticos baseados na aplicação do teorema de bayes, com a presunção "naive" da independência entre cada par de atributos. Utilizado no mundo real maioritariamente em situações de classificação de documentos e filtros de spam. \\
+
+Os classificadores de bayes representam uma metodologia de aprendizagem supervisionada e uma metodologia de classificação estatistica. O algoritmo calcula as probabilidades explícitas para cada hipótese e é bastante rubusto contra dados que não contribuiem para a decisão. \\
+
+\subsubsection{Desenvolvimento}
+
+Este algoritmo foi desenvolvido em python, para validação de resultados o dataset inicial foi dividido aleatóriamente em dataset de treino e dataset de teste com um racio de 0,8. \\
+
+Após separar o dataset de treino por labels (valores de Y), o treino consiste na obtenção da média e desvio padrão para cada atributo, para ser usado à posteriori no calculo da probabilidade condicionada com que o atributo influência a probabilidade da label.\\
+    
+Bibliografia consultada:\\
+\url{https://en.wikipedia.org/wiki/Naive_Bayes_classifier}\\
+\url{https://www.youtube.com/watch?v=DNvwfNEiKvw}\\
+\url{http://www.statsoft.com/textbook/naive-bayes-classifier}\\
+\url{https://www.cs.cmu.edu/~tom/mlbook/NBayesLogReg.pdf}\\
+\url{http://scikit-learn.org/stable/modules/naive_bayes.html}\\
+\url{http://www.cs.unb.ca/~hzhang/publications/FLAIRS04ZhangH.pdf}\\
+
+\subsubsection{Resultados - Desempenho obtido}
+
+\begin{itemize}
+	\item Accuracy: ~73\%
+	\item Recall: ~83\%
+	\item Precision: ~27\%
+	\item F-Score: ~41\%
+\end{itemize}
+
+\subsubsection{Conclusão}
+Embora rubusto contra dados que não contribuiem para a decisão, os algoritmos de aprendizagem supervisionada como naive bayes podem ser alimentados com uma seleção de atributos que maximize a medida de performance mais valorizada, que para o caso da tendência de um cliente subscrever a prazo ou não é o recall.\\ 
+
+Devido à presunção teórica de independência dos atributos o algoritmo cresce em tempo de execução de forma linear com a quantidade de dados de treino, no entando para o problema em questão não é uma caracteristica de extrema relevância para a solução; Para conseguir atingir os clientes pretendidos os resultados obtidos são razoáveis (~83\%), no entanto com muitos falsos positivos, de onde se pode concluir que classificador naive bayes não é o mais indicado para o problema.\\
+
+\subsection{Decision Tree}
+\subsubsection{Teoria}
+Decision Tree permite efetuar tanto classificação como regressão sobre um dataset, utilizando uma árvore para estruturar os valores, com base no principio de dividir-para-conquistar.
+Cada nó da árvore será um teste aos atributos cujas ramificações serão os possíveis valores desse atributo. Após essa divisão, caso o nó seguinte não dê para dividir (isto é, já é possível classificar e é um nó folha) então o algoritmo pára, caso contrário, continua a divisão (recorrendo a outros atributos).
+
+Seguindo o principio de dividir-para-conquistar, o fluxo do algoritmo é explicado da seguinte maneira:
+\begin{itemize}
+\item Dividir os dados em subsets (baseado na entropia dos atributos)
+\begin{itemize}
+\item Nós - Atributos de decisão
+\item Ramificações - Valores possíveis dos atributos
+\item Nós folha - Classes
+\end{itemize}
+\item São nós “puros” (neste caso, os nós só têm um dos valores de classe dentro dos possíveis - 0 ou 1)?
+\begin{itemize}
+\item Se sim, pára
+\item Se não, repetir
+\end{itemize}
+\end{itemize}
+
+\subsubsection{Desenvolvimento}
+A estratégia adoptada para o desenvolvimento da Decision tree baseou-se nos seguintes passos:
+\begin{enumerate}
+\item Normalização dos dados
+\item Dividir o dataset em dataset de Aprendizagem e dataset de Teste
+\item Criar a Decision Tree com o dataset de Aprendizagem
+\begin{itemize}
+\item Baseado na entropia e ganho de informação
+%gain = current_score - p * scoref(set1) - (1 - p) * scoref(set2)
+\end{itemize}
+\item Prever os resultados (classes) do dataset de Teste
+\begin{itemize}
+\item A partir da comparação entre os valores da Decision Tree com os valores do dataset de Teste
+\end{itemize}
+\end{enumerate}
+
+Este algoritmo foi desenvolvido em Python e, tal como referido na estratégia, dividiu-se o dataset inicial em dataset de Aprendizagem/Treino e dataset de teste com um rácio de 0,7.\\
+
+Bibliografia consultada:\\
+\url{http://www.tutorialspoint.com/data_mining/dm_dti.htm}\\
+\url{https://www.youtube.com/playlist?list=PLBv09BD7ez_4temBw7vLA19p3tdQH6FYO }\\
+\url{http://web.arch.usyd.edu.au/~wpeng/DecisionTree2.pdf}\\
+\url{http://www.saedsayad.com/decision_tree.htm}\\
+\subsubsection{Análise do Desempenho}
+Para analisar o desempenho deste algoritmo, foram recolhidas as seguintes medidas:
+\begin{itemize}
+\item Accuracy - ~88\%
+\item Recall - ~50\%
+\item Precision - ~50\%
+\item F-Measure - ~50\%
+\end{itemize}
+\subsubsection{Conclusão}
+Como se pode ver, a Accuracy tem um valor alto, no entanto, como o dataset não é equilibrado (90\% classe 0 e 10\% classe 1), esta medida deixa de ser relevante.
+Sendo que foi necessário calcular as outras medidas mas os resultados obtidos foram de 50$\pm$2\%, o que indica que Decision Tree não é o classificador mais indicado para este dataset.
+
 
 %\bibliography{report} % use a field named url or \url{} for URLs
 %\url{www.ua.pt}

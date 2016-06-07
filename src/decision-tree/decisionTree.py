@@ -2,7 +2,7 @@ import csv
 import random
 
 
-class decisionnode:
+class node:
     def __init__(self, col = -1, value = None, results = None, tb = None, fb = None):
         self.col = col
         self.value = value
@@ -69,7 +69,7 @@ def classify(observation, tree):
 # Function to build the decision tree
 def buildtree(rows, scoref = entropy):
     if len(rows) == 0:
-        return decisionnode()
+        return node()
     current_score = scoref(rows)
 
     best_gain = 0.0  # Best Information Gain
@@ -94,14 +94,13 @@ def buildtree(rows, scoref = entropy):
                 best_criteria = (col, value)
                 best_sets = (set1, set2)
 
-    # Create the sub branches
     if best_gain > 0:
         trueBranch = buildtree(best_sets[0])
         falseBranch = buildtree(best_sets[1])
-        return decisionnode(col = best_criteria[0], value = best_criteria[1],
+        return node(col = best_criteria[0], value = best_criteria[1],
                             tb = trueBranch, fb = falseBranch)
     else:
-        return decisionnode(results = uniquecounts(rows))
+        return node(results = uniquecounts(rows))
 
 
 # Gets the data from the .csv file
@@ -212,5 +211,3 @@ print 'Accuracy: ', getAccuracy(test, preds) * 100, '%'
 print 'Recall: ', getOneAccuracy(test, preds) * 100, '%'
 print 'Precision: ', getPrecision(test, preds) * 100, '%'
 print 'F-Score: ', getFScore(test, preds) * 100, '%'
-
-# print result
